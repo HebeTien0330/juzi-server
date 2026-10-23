@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package protocol.inner;
+
+option go_package = "/pb";
+
+import "common/common.proto";
+
+message InnerBaseReq {
+    string serverId = 1;
+}
+
+message InnerBaseRsp {
+    protocol.common.Code code = 2;
+}
+
+// 通用内部 RPC 请求
+message RpcMessageReq {
+    InnerBaseReq baseReq = 1;
+    string msgName = 2;
+    bytes payload = 3;
+}
+
+message RpcMessageRsp {
+    InnerBaseRsp baseRsp = 1;
+    string msg = 2;
+    string msgName = 3;
+    bytes payload = 4;
+}
+
+// 登录成功后 Game 通知 Gate 绑定连接
+message BindSessionReq {
+    InnerBaseReq baseReq = 1;
+    string clientId = 2;
+    string userId = 3;
+    string account = 4;
+    string gameServerId = 5;
+}
+
+message BindSessionRsp {
+    InnerBaseRsp baseRsp = 1;
+}
+
+// 跨 Game 迁移在线玩家。snapshot 由游戏自己解释。
+message ExportPlayerReq {
+    InnerBaseReq baseReq = 1;
+    string userId = 2;
+    string clientId = 3;
+}
+
+message ExportPlayerRsp {
+    InnerBaseRsp baseRsp = 1;
+    TransferPlayerReq transferReq = 2;
+}
+
+message TransferPlayerReq {
+    InnerBaseReq baseReq = 1;
+    string userId = 2;
+    string account = 3;
+    string clientId = 4;
+    string sessionToken = 5;
+    bytes snapshot = 6;
+}
+
+message TransferPlayerRsp {
+    InnerBaseRsp baseRsp = 1;
+}

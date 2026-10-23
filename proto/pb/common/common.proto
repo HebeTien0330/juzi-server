@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package protocol.common;
+
+option go_package = "/pb";
+
+enum MsgType //枚举消息类型
+{
+  MsgNil = 0;
+  MsgReq = 1;
+  MsgRes = 2;
+  MsgNotify = 3;
+}
+
+message Req{
+  string msg = 1;
+}
+
+message Res{
+  string msg = 2;
+}
+
+message C2SHeartbeat {
+  int32 no = 1;
+}
+
+message S2CHeartbeat {
+  int32 no = 1;
+}
+
+enum Code {
+  PLACEHOLDER = 0;
+  OK = 200;
+  ERR = 500;
+}

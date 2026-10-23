@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package protocol.item;
+
+option go_package = "/pb";
+
+enum BagType {
+    common = 0;     // 通用
+    role = 1;       // 角色
+    equipment = 2;  // 装备
+}
+
+message Item {
+    int32 id = 1;           // 物品id
+    string name = 2;        // 物品名称
+    string icon = 3;        // 物品图标
+    BagType bag = 4;        // 背包类型
+    int32 class = 5;        // 物品类型
+    int32 quality = 6;      // 物品品质
+    int32 maxStack = 7;     // 最大堆叠数
+    int32 count = 8;        // 数量
+    int32 slot = 9;         // 背包格子
+    string desc = 10;       // 描述
+}
+
+enum Quality {
+    null = 0;
+    Brown = 1;
+    Green = 2;
+    Blue = 3;
+    Purple = 4;
+    Red = 5;
+    Yellow = 6;
+}

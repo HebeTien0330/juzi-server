@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package protocol.session;
+
+option go_package = "/pb";
+
+import "common/common.proto";
+import "public/server.proto";
+
+message C2SLogout {
+    string userId = 1;
+}
+
+message S2CLogout {
+    protocol.common.Code code = 1;
+}
+
+message C2SReconnect {
+    string userId = 1;
+    string sessionToken = 2;
+}
+
+message S2CReconnect {
+    protocol.common.Code code = 1;
+    string clientid = 2;
+    string userId = 3;
+    // 4-6 预留给游戏侧登录态字段，编号与既有会话协议对齐
+    string sessionToken = 7;
+    protocol.server.Remote remote = 8;
+}
+
+// Gate 在连接断开时内部转发给 Game，客户端不要发送
+message C2SDisconnect {
+    string userId = 1;
+}
+
+message S2CDisconnect {
+    protocol.common.Code code = 1;
+}

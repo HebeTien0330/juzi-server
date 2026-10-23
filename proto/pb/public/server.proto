@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package protocol.server;
+
+option go_package = "/pb";
+
+import "common/common.proto";
+
+message ClientInfo {
+    string clientId = 1;
+    string gameServerId = 2;
+}
+
+message BaseReq {
+    string clientId = 1;
+}
+
+message BaseRsp {
+    string clientId = 1;
+    protocol.common.Code code = 2;
+}
+
+// 增量同步数据：点路径 -> JSON 文本（删除值为 "null"）
+message Remote {
+    map<string, string> data = 1;
+}
+
+// 通用消息传输请求
+message TransferMessageReq {
+    BaseReq baseReq = 1;
+    string msgName = 2;     // 消息名称,用于路由到对应的处理方法
+    int32 seqId = 3;        // 请求序列号,用于请求响应匹配
+    bytes payload = 4;      // 消息内容
+}
+
+// 通用消息传输响应
+message TransferMessageRsp {
+    BaseRsp baseRsp = 1;                // 响应码: 0-成功, 其他-失败
+    string msg = 2;                     // 响应消息或错误信息
+    int32 seqId = 3;                    // 请求序列号,用于请求响应匹配
+    bytes payload = 4;                  // 响应数据
+}
+
+// 通用广播消息
+message NotifyMessageInf {
+    BaseReq baseReq = 1;
+    string msgName = 2;     // 推送消息名称
+    bytes payload = 3;      // 推送消息内容
+}
+
+message SwicthGameServerReq {
+    BaseReq baseReq = 1;
+    string originServerId = 2;      // 原gameserver
+    string targetServerId = 3;      // 目标gameserver
+    string msgName = 4;             // 切服后需要执行的C2S协议名
+    bytes payload = 5;              // 操作参数
+}
+
+message SwicthGameServerRsp {
+    BaseRsp baseRsp = 1;
+    bytes payload = 2;
+}

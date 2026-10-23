@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package protocol.serverConf;
+
+option go_package = "/pb";
+
+// HTTP 服务项
+message HttpServiceItem {
+    string id = 1;
+    string host = 2;
+    int32 port = 3;
+    string args = 4;
+}
+
+// WebSocket 服务项
+message WebSocketServiceItem {
+    string id = 1;
+    string no = 2;
+    string host = 3;
+    int32 port = 4;
+    string master = 5;
+    repeated string slaves = 6;
+    string args = 7;
+}
+
+// Redis 服务项
+message RedisItem {
+    string id = 1;
+    string host = 2;
+    int32 port = 3;
+    string password = 4;
+    int32 db = 5;
+}
+
+// MySQL 服务项
+message MySqlItem {
+    string id = 1;
+    string host = 2;
+    int32 port = 3;
+    string user = 4;
+    string password = 5;
+    string db = 6;
+}
+
+// 包装层：用于 httpServices 和 websocketServices 的内层 map
+message HttpServiceGroup {
+    map<string, HttpServiceItem> items = 1;
+}
+
+message WebSocketServiceGroup {
+    map<string, WebSocketServiceItem> items = 1;
+}
+
+// 主配置结构
+message ServerConf {
+    // map<服务类型，map<服务 ID, 服务项>>
+    map<string, HttpServiceGroup> httpServices = 1;
+    map<string, WebSocketServiceGroup> websocketServices = 2;
+
+    // map<服务 ID, 服务项>
+    map<string, RedisItem> redisService = 3;
+    map<string, MySqlItem> mysqlService = 4;
+
+    string version = 5;
+}

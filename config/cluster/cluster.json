@@ -1,0 +1,44 @@
+{
+	"NodeList": [
+		{
+			"NodeId": "1001",
+			"ListenAddr": "127.0.0.1:8011",
+			"MaxRpcParamLen": 409600,
+			"Private": false,
+			"NodeName": "gate",
+			"ServiceList": ["HttpService", "HttpGateService", "WSService", "WsGateService", "Gate"]
+		},
+		{
+			"NodeId": "2001",
+			"ListenAddr": "127.0.0.1:8021",
+			"MaxRpcParamLen": 409600,
+			"Private": false,
+			"NodeName": "center-1",
+			"ServiceList": ["Center"]
+		},
+		{
+			"NodeId": "3001",
+			"ListenAddr": "127.0.0.1:8031",
+			"MaxRpcParamLen": 409600,
+			"Private": false,
+			"NodeName": "game-1",
+			"ServiceList": ["Game"]
+		},
+		{
+			"NodeId": "4001",
+			"ListenAddr": "127.0.0.1:8041",
+			"MaxRpcParamLen": 409600,
+			"Private": false,
+			"NodeName": "battle-1",
+			"ServiceList": ["Battle"]
+		},
+		{
+			"NodeId": "5001",
+			"ListenAddr": "127.0.0.1:8051",
+			"MaxRpcParamLen": 409600,
+			"Private": false,
+			"NodeName": "user-1",
+			"ServiceList": ["User"]
+		}
+	]
+}

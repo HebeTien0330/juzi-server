@@ -1,0 +1,16 @@
+{
+	"Discovery": {
+		"Origin": {
+			"TTLSecond": 10,
+			"MasterNodeList": [
+				{
+					"NodeId": "1001",
+					"ListenAddr": "127.0.0.1:8011"
+				}
+			]
+		},
+		"RpcMode": {
+			"Type": "Default"
+		}
+	}
+}

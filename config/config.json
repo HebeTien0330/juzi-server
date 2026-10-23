@@ -1,0 +1,31 @@
+{
+    "httpServices": {
+        "wsGate": {
+            "wsGate-1": {"id": "wsGate-1", "host": "127.0.0.1", "port": 9031, "args": ""}
+        }
+    },
+    "websocketServices": {
+        "gate": {
+            "gate-1": {"id": "gate-1", "no": "1001", "host": "127.0.0.1", "port": 8011, "args": ""}
+        },
+        "center": {
+            "center-1": {"id": "center-1", "no": "2001", "host": "127.0.0.1", "port": 8021, "slaves": ["3001"], "args": ""}
+        },
+        "game": {
+            "game-1": {"id": "game-1", "no": "3001", "host": "127.0.0.1", "port": 8031, "master": "2001", "args": ""}
+        },
+        "battle": {
+            "battle-1": {"id": "battle-1", "no": "4001", "host": "127.0.0.1", "port": 8041, "master": "2001", "args": ""}
+        },
+        "user": {
+            "user-1": {"id": "user-1", "no": "5001", "host": "127.0.0.1", "port": 8051, "master": "2001", "args": ""}
+        }
+    },
+    "redisService": {
+        "redis-1": {"id": "redis-1", "host": "127.0.0.1", "port": 6379, "password": "", "db": 0}
+    },
+    "mysqlService": {
+        "mysql-1": {"id": "mysql-1", "host": "127.0.0.1", "port": 3306, "user": "root", "password": "", "db": "gamedata"}
+    },
+    "version": "0.0.1"
+}
